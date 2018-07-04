@@ -15,7 +15,9 @@ export class AppComponent implements OnInit {
 
   async ngOnInit() {
     this.texture = await this.apiService.getTexture();
-    const player = new DymoPlayerManager();
+
+    const player = new DymoPlayerManager(false);
+    player.setScheduleAheadTime(2);
     await player.init();
     console.log("loaded", await player.getDymoManager().getStore().size());
     await player.getDymoManager().loadIntoStoreFromString(this.texture);
