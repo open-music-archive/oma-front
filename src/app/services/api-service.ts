@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ApiService {
 
-  private API_URL = "http://localhost:8060/";//"https://play-it-again.herokuapp.com/";
+  private API_URL = "http://localhost:8060/";//"https://play-it-again-use-it-together.herokuapp.com/";
 
   async getTexture(): Promise<string> {
     return JSON.stringify(await this.getJsonFromApi('texture/'), null, "    ");
