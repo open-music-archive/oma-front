@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DymoPlayerManager } from 'dymo-player';
+import { DymoPlayer } from 'dymo-player';
 import { ApiService } from './services/api-service';
 
 @Component({
@@ -9,14 +9,14 @@ import { ApiService } from './services/api-service';
 })
 export class AppComponent implements OnInit {
 
-  private player: DymoPlayerManager;
+  private player: DymoPlayer;
   private texture: string;
   private previousUri: string;
 
   constructor(private apiService: ApiService) {}
 
   async ngOnInit() {
-    this.player = new DymoPlayerManager(true, true, 0.2, 2, 0.04);
+    this.player = new DymoPlayer(true, true, 0.2, 2, 0.04);
     await this.player.init("https://raw.githubusercontent.com/dynamic-music/dymo-core/master/ontologies/");
     this.playLiveTexture();
   }
@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
       this.texture = texture;
       const newUri = (await this.player.loadDymoFromString(texture)).dymoUris;
       console.log("LIVE", newUri, this.previousUri);
-      this.player.startPlayingUri(newUri[newUri.length-1], this.previousUri);
+      this.player.playUri(newUri[newUri.length-1], this.previousUri);
       this.previousUri = newUri[newUri.length-1];
     })
   }
@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
   private async playTexture() {
     this.texture = await this.apiService.getTexture();
     await this.player.loadDymoFromString(this.texture);
-    this.player.startPlaying();
+    this.player.play();
   }
 
 }
