@@ -1,6 +1,6 @@
 {
   "name": "oma-front",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -22,7 +22,7 @@
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
     "core-js": "^2.4.1",
-    "dymo-player": "~0.2.1",
+    "dymo-player": "~0.2.2",
     "rxjs": "^5.5.12",
     "socket.io": "^2.1.1",
     "zone.js": "^0.8.14"
