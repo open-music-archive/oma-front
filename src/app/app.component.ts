@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DymoPlayer } from 'dymo-player';
 import { ApiService } from './services/api-service';
+import * as JSZip from 'jszip';
+import * as _ from 'lodash';
+import { saveAs } from 'file-saver/FileSaver';
 
 @Component({
   selector: 'app-root',
@@ -34,8 +37,11 @@ export class AppComponent implements OnInit {
       const newUri = newUris[newUris.length-1];
       console.log("LIVE", await this.player.getDymoManager().getStore().size());
       this.updatePerformanceInfo();
-      //this.player.playUri(newUri);//, this.previousUri);
-      this.player.transitionToUri(newUri, this.previousUri, 3);
+      if (this.previousUri && this.player.isPlaying(this.previousUri)) {
+        this.player.transitionToUri(newUri, this.previousUri, 3);
+      } else {
+        this.player.playUri(newUri);//, this.previousUri);
+      }
       this.previousUri = newUri;
     })
   }
@@ -46,11 +52,32 @@ export class AppComponent implements OnInit {
     this.player.play();
   }
 
+  protected async downloadCurrentSoundObjects() {
+    if (this.previousUri) {
+      const files = await this.player.getDymoManager().getStore().getAllSourcePaths();
+      const zip = new JSZip();
+      const folder = zip.folder("sound-objects");
+
+      await Promise.all(files.map(async f => {
+        const audio = await fetch(f, {mode: 'cors'});
+        const name = f.slice(_.lastIndexOf(f, '/')+1);
+        if (audio.ok) {
+          folder.file(name, audio.arrayBuffer())
+        }
+      }));
+
+      zip.generateAsync({type:"blob"}).then(content => {
+        saveAs(content, "sound-objects.zip");
+      });
+    }
+  }
+
   private async updatePerformanceInfo() {
     let info: string[] = [];
     const store = this.player.getDymoManager().getStore();
     info.push("triples: " + await store.size());
     info.push("observers: " + await store.getValueObserverCount());
+    info.push("constraints: " + await store.getActiveConstraintCount());
     info.push("dymos: " + this.numPlayingDymos);
     info.push("buffers: " + this.numLoadedBuffers);
     this.performanceInfo = info.join(', ');
