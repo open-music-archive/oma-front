@@ -4,6 +4,7 @@ import { ApiService } from './services/api-service';
 import * as JSZip from 'jszip';
 import * as _ from 'lodash';
 import { saveAs } from 'file-saver/FileSaver';
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,7 @@ export class AppComponent implements OnInit {
   private numLoadedBuffers: number;
   private performanceInfo: string;
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private http: Http) {}
 
   async ngOnInit() {
     this.player = new DymoPlayer({useWorkers:true, preloadBuffers:true,
@@ -27,11 +28,13 @@ export class AppComponent implements OnInit {
     await this.player.init("https://raw.githubusercontent.com/dynamic-music/dymo-core/master/ontologies/");
     this.player.getPlayingDymoUris().subscribe(ds => this.numPlayingDymos = ds.length);
     this.player.getAudioBank().getBufferCount().subscribe(n => this.numLoadedBuffers = n);
+    this.playCrackling();
     this.playLiveTexture();
   }
 
   private playLiveTexture() {
-    this.apiService.onLiveTexture().subscribe(async texture => {
+    const live = this.apiService.onLiveTexture().subscribe(async texture => {
+
       this.texture = texture;
       const newUris = (await this.player.loadDymoFromString(texture)).dymoUris;
       const newUri = newUris[newUris.length-1];
@@ -50,6 +53,15 @@ export class AppComponent implements OnInit {
     this.texture = await this.apiService.getTexture();
     await this.player.loadDymoFromString(this.texture);
     this.player.play();
+  }
+
+  private async playCrackling() {
+    this.http.get('assets/crackling.json')
+      .subscribe(async c => {
+        const uri = (await this.player.loadDymoFromString(c.text())).dymoUris[0];
+        this.player.playUri(uri);
+        this.previousUri = uri;
+      });
   }
 
   protected async downloadCurrentSoundObjects() {
