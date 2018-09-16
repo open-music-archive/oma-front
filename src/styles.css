@@ -1,1 +1,92 @@
 /* You can add global styles to this file, and also import other style files */
+    @font-face {
+    font-family: OMA;
+    src: url('assets/OMA_SUPER_12.ttf');
+    }
+
+    body {
+		background-image: url("assets/DSCF5413.jpg");
+		background-attachment: fixed;
+		background-position: center; 
+		font-family: 'OMA'; 
+		color:#FFF;
+		text-align: center;
+	}
+
+	h1, h2, h3 {
+		font-weight: 400;
+		margin: 0	
+	}
+
+	h1 {
+
+		font-size: 60px;
+
+	}
+
+	h2 {
+
+		font-size: 45px;
+	}
+
+	h3 {
+
+		font-size: 25px;
+	}
+
+	/*button {
+
+		position:absolute;
+		top: 10px;
+		right: 10px;
+	}
+	*/
+
+	button {
+	    background-color: transparent; /* Green */
+	    border: none;
+	    color: white;
+	    padding: 15px 32px;
+	    text-align: center;
+	    text-decoration: none;
+	    display: inline-block;
+	    font-size: 48px;
+	}
+	.infobox {
+
+		position: absolute;
+		top:2vh;
+		left:2vw;
+
+		width: 96vw;
+		background-color: #fff;
+
+		display: none;
+
+	}
+
+	.textbox {
+
+		padding:20px;
+		text-align: left;
+		color:#e14029;
+		padding-right:20px;
+
+	}
+
+	.textbox a {
+
+		text-decoration: none;
+		/*color: #e14029;*/
+
+	}
+
+	.textbox a:hover {
+
+		color: #DBEBEE;
+	}
+
+	.textbox img {
+
+		color: unset;
+	}

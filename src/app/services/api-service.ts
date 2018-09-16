@@ -5,7 +5,7 @@ import * as socketIO from 'socket.io-client';
 @Injectable()
 export class ApiService {
 
-  private API_URL = "http://localhost:8060/"//"https://play-it-again-use-it-together.herokuapp.com/";//"http://localhost:8060/";
+  private API_URL = "https://play-it-again-use-it-together.herokuapp.com/";//"http://localhost:8060/";
   private socket = socketIO(this.API_URL, {
     extraHeaders: {
       'Access-Control-Allow-Credentials': 'omit'
