@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   private numPlayingDymos: number;
   private numLoadedBuffers: number;
   private performanceInfo: string;
+  private recordings: {}[];
 
   constructor(private apiService: ApiService, private http: Http) {}
 
@@ -46,6 +47,9 @@ export class AppComponent implements OnInit {
         this.player.playUri(newUri);//, this.previousUri);
       }
       this.previousUri = newUri;
+
+      this.recordings = await this.apiService.getRecentRecordings();
+      console.log(this.recordings)
     })
   }
 

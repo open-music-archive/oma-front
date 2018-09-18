@@ -6,11 +6,16 @@
     Victoria Gallery and Museum Liverpool<br/>
     14th September - 24th November 2018
   </h3>
-  <br/>
-  <p>
-  <button (click)="downloadCurrentSoundObjects()"><img src="assets/download.png"></button><br/>
-  Download Sounds<br/>
-  </p>
+  <br>
+  <button (click)="downloadCurrentSoundObjects()"><img src="assets/download.png"></button>
+  <br>
+  Download Sounds
+  <br>
+  <br>
+  Recently Digitised:
+  <div *ngFor="let r of recordings">
+    {{ r.artist }} - {{ r.title }}
+  </div>
 
   <!--
   <p>
@@ -24,7 +29,7 @@
   <br>
   <!--<textarea disabled style="border:none;resize:none" rows="18" cols="50">{{texture}}</textarea>-->
   <br>
-  
+
   <!--
   <div class="infobox" id="infobox">
 
@@ -32,7 +37,7 @@
 
 
 
-      <a href="#" onclick="myInfoClose();return false;" style="float:right;">X</a> 
+      <a href="#" onclick="myInfoClose();return false;" style="float:right;">X</a>
       <h3>Play it Again! Use it Together</h3>
       <h3>Open Music Archive feat. 51 architecture</h3>
 
