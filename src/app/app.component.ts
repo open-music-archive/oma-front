@@ -49,7 +49,7 @@ export class AppComponent implements OnInit {
       this.previousUri = newUri;
 
       this.recordings = await this.apiService.getRecentRecordings();
-      console.log(this.recordings)
+      //console.log(this.recordings)
     })
   }
 
