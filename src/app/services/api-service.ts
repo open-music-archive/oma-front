@@ -41,6 +41,11 @@ export class ApiService {
     return <SoundObject[]> await this.getJsonFromApi('random?count='+count);
   }
 
+  async getSimilarSoundObjects(sound: SoundObject, count: number): Promise<SoundObject[]> {
+    return <SoundObject[]> await this.getJsonFromApi(
+      'similar?uri='+sound.audioUri+'&count='+count);
+  }
+
   async getTexture(): Promise<string> {
     return JSON.stringify(await this.getJsonFromApi('texture/'), null, "    ");
   }
