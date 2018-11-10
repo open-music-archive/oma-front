@@ -17,6 +17,10 @@ export interface RecordSide {
   recordingGuid: string
 }
 
+export interface SoundObject {
+  audioUri: string
+}
+
 @Injectable()
 export class ApiService {
 
@@ -31,6 +35,10 @@ export class ApiService {
     const recs = <RecordSide[]>await this.getJsonFromApi('recordings/');
     recs.sort((a,b) => Date.parse(b.time) - Date.parse(a.time));
     return recs.slice(0,10);
+  }
+
+  async getRandomSoundObjects(count: number): Promise<SoundObject[]> {
+    return <SoundObject[]> await this.getJsonFromApi('random?count='+count);
   }
 
   async getTexture(): Promise<string> {

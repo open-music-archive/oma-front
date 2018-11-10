@@ -1,16 +1,28 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
+import { MainComponent } from './main.component';
+import { MpcComponent } from './mpc.component';
 import { ApiService } from './services/api-service';
+
+const appRoutes: Routes = [
+  { path: 'main', component: MainComponent },
+  { path: 'mpc', component: MpcComponent },
+  { path: '', redirectTo: '/main', pathMatch: 'full' }
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MainComponent,
+    MpcComponent
   ],
   imports: [
     BrowserModule,
+    RouterModule.forRoot(appRoutes),
     HttpModule
   ],
   providers: [ApiService],

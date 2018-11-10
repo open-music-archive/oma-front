@@ -1,0 +1,12 @@
+<h1>MPC it Again!</h1>
+
+
+<button *ngFor="let s of sounds" (click)="play(s)">
+  O
+</button>
+
+
+<br>
+<br>
+<br>
+<h4 *ngIf="!sounds">...loading...</h4>
