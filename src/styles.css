@@ -43,6 +43,13 @@
 	*/
 
 	button {
+
+	    border: none;
+
+	}
+
+
+	.homebutton button {
 	    background-color: transparent; /* Green */
 	    border: none;
 	    color: white;
@@ -52,6 +59,8 @@
 	    display: inline-block;
 	    font-size: 48px;
 	}
+
+
 	.infobox {
 
 		position: absolute;
@@ -91,6 +100,9 @@
 		color: unset;
 	}
 
+
+
+
 	.mpc {
 
 		display: flex; /* or inline-flex */
@@ -100,68 +112,51 @@
 
 	}
 
-
 	.mpc-button-container {
 		flex: 20%;
 	    background-color: white; 
 	    margin:6px;
-
 	    height: calc(100vh / 5);
-
-		display: flex; /* or inline-flex */
-		flex-wrap: nowrap;
-
-		flex-direction: column;
 	}
 
+
 	.mpc-controller-buttons {
-
-		display: flex; /* or inline-flex */
-		flex-wrap: wrap;
-
-		height: 10px;
-		overflow: none;
-
-		justify-content: space-between;
+		height: 40px;
+		position: absolute;
+		margin-top:-40px;
+		margin-left:10px;
 	}
 
 	.mpc-button {
-
-
-		height: calc(100vh / 10);
-	}
-
-	.mpc-button button {
-
-				background-color: #666;
+		background-color: #666;
+		width: 100%;
+		height: 100%;
 	}
 
 	.mpc-button:active {
-
 		background-color: grey;
+	}
 
+	.mpc-random, .mpc-similar, .mpc-globalreplace {
+		/*width: 30%;*/
 
 	}
 
-	.mpc-random button, .mpc-similar button, .mpc-globalreplace button {
+	.mpc-controller-buttons button {
 
-		flex-basis: 30%;
-		max-width: 5px;
-		max-height: 5px;
-
+		height: 30px;
+		
 	}
 
 	.mpc-random {
-
-		background-color: pink;
+		background-color: #9F8665;
 	}
 
 	.mpc-similar {
-
-		background-color: red;
+		background-color: #CBC198;
 	}
 
 	.mpc-globalreplace {
-		background-color: green;
+		background-color: #96968F;
 	}
 

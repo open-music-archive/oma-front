@@ -2,9 +2,7 @@
   edit<input type="checkbox" [(ngModel)]="isEditing"/>
   <div class="mpc">
 	<div class="mpc-button-container" *ngFor="let s of sounds">
-	  <div mpc-button>
-	  	<button (click)="play(s)"></button>
-	  </div>
+	  	<button class="mpc-button" (click)="play(s)"></button>
 	  <div *ngIf="isEditing" class="mpc-controller-buttons">
 	  	<button class="mpc-random" (click)="random(s)"></button>
 	  	<button class="mpc-similar" (click)="similar(s)"></button>
