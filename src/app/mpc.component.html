@@ -1,10 +1,12 @@
 <div (window:keydown)="keyDown($event)">
   <h1>MPC it Again!</h1>
 
-  <button *ngFor="let s of sounds" (click)="play(s)">
-    O
-  </button>
-
+  <div *ngFor="let s of sounds">
+    <button (click)="play(s)">O</button>
+    <button (click)="random(s)">R</button>
+    <button (click)="similar(s)">S</button>
+    <button (click)="all(s)">A</button>
+  </div>
   <br>
   <br>
   <br>
