@@ -1,6 +1,6 @@
 <div (window:keydown)="keyDown($event)">
+  edit<input type="checkbox" [(ngModel)]="isEditing"/>
   <div class="mpc">
-  <input type="checkbox" [(ngModel)]="isEditing"/>
 	<div class="mpc-button-container" *ngFor="let s of sounds">
 	  <div mpc-button>
 	  	<button (click)="play(s)"></button>
