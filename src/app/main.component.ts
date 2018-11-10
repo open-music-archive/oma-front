@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DymoPlayer } from 'dymo-player';
 import { ApiService } from './services/api-service';
-import * as JSZip from 'jszip';
-import * as _ from 'lodash';
-import { saveAs } from 'file-saver/FileSaver';
 import { Http } from '@angular/http';
+import { downloadAudioFiles } from './util';
 
 @Component({
   templateUrl: './main.component.html',
@@ -71,20 +69,7 @@ export class MainComponent implements OnInit {
   protected async downloadCurrentSoundObjects() {
     if (this.previousUri) {
       const files = await this.player.getDymoManager().getStore().getAllSourcePaths();
-      const zip = new JSZip();
-      const folder = zip.folder("sound-objects");
-
-      await Promise.all(files.map(async f => {
-        const audio = await fetch(f, {mode: 'cors'});
-        const name = f.slice(_.lastIndexOf(f, '/')+1);
-        if (audio.ok) {
-          folder.file(name, audio.arrayBuffer())
-        }
-      }));
-
-      zip.generateAsync({type:"blob"}).then(content => {
-        saveAs(content, "sound-objects.zip");
-      });
+      downloadAudioFiles(files);
     }
   }
 
