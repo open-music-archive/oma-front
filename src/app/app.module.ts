@@ -12,7 +12,8 @@ import { ApiService } from './services/api-service';
 const appRoutes: Routes = [
   { path: 'main', component: MainComponent },
   { path: 'mpc', component: MpcComponent },
-  { path: '', redirectTo: '/main', pathMatch: 'full' }
+  { path: '', redirectTo: '/main', pathMatch: 'full' },
+  { path: '**', component: MainComponent }
 ];
 
 @NgModule({

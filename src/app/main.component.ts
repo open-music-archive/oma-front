@@ -51,6 +51,10 @@ export class MainComponent implements OnInit {
     })
   }
 
+  async stopPlayer() {
+    this.player.stop();
+  }
+
   private async playTexture() {
     this.texture = await this.apiService.getTexture();
     await this.player.loadDymoFromString(this.texture);
