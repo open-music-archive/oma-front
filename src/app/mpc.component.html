@@ -1,13 +1,13 @@
 <div (window:keydown)="keyDown($event)">
   <div class="mpc">
 	<div class="mpc-button-container" *ngFor="let s of sounds">
-	  <div>
-	  	<button class="mpc-button" (click)="play(s)"></button>
-	  <div>
-	  <div>
-	  	<button class="mpc-random" (click)="random(s)">R</button>
-	  	<button class="mpc-similar" (click)="similar(s)">S</button>
-	  	<button class="mpc-globalreplace" (click)="all(s)">G</button>	
+	  <div mpc-button>
+	  	<button (click)="play(s)"></button>
+	  </div>
+	  <div class="mpc-controller-buttons">
+	  	<button class="mpc-random" (click)="random(s)"></button>
+	  	<button class="mpc-similar" (click)="similar(s)"></button>
+	  	<button class="mpc-globalreplace" (click)="all(s)"></button>	
 	  </div>
 	</div>
   </div>

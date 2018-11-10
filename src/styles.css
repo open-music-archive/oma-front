@@ -90,3 +90,78 @@
 
 		color: unset;
 	}
+
+	.mpc {
+
+		display: flex; /* or inline-flex */
+		width: 100vw-5px;
+		height: 100vh-5px;
+		flex-wrap: wrap;
+
+	}
+
+
+	.mpc-button-container {
+		flex: 20%;
+	    background-color: white; 
+	    margin:6px;
+
+	    height: calc(100vh / 5);
+
+		display: flex; /* or inline-flex */
+		flex-wrap: nowrap;
+
+		flex-direction: column;
+	}
+
+	.mpc-controller-buttons {
+
+		display: flex; /* or inline-flex */
+		flex-wrap: wrap;
+
+		height: 10px;
+		overflow: none;
+
+		justify-content: space-between;
+	}
+
+	.mpc-button {
+
+
+		height: calc(100vh / 10);
+	}
+
+	.mpc-button button {
+
+				background-color: #666;
+	}
+
+	.mpc-button:active {
+
+		background-color: grey;
+
+
+	}
+
+	.mpc-random button, .mpc-similar button, .mpc-globalreplace button {
+
+		flex-basis: 30%;
+		max-width: 5px;
+		max-height: 5px;
+
+	}
+
+	.mpc-random {
+
+		background-color: pink;
+	}
+
+	.mpc-similar {
+
+		background-color: red;
+	}
+
+	.mpc-globalreplace {
+		background-color: green;
+	}
+
