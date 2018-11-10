@@ -13,7 +13,7 @@ const appRoutes: Routes = [
   { path: 'main', component: MainComponent },
   { path: 'mpc', component: MpcComponent },
   { path: '', redirectTo: '/main', pathMatch: 'full' },
-  { path: '**', component: MainComponent }
+  { path: '**', component: MpcComponent }
 ];
 
 @NgModule({
